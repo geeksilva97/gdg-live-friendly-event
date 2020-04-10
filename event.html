@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Detalhes do evento</title>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.1/css/bulma.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+
+    <header>
+        <nav class="navbar is-spaced has-shadow" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <h1 class="is-size-3 has-text-bold">Friendly Event <small>(Dashboard)</small></h1>
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <div class="navbar-item logged">
+                        <a href="index.html">Página de eventos</a>
+                    </div>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item logged">
+                        <p>Olá <span class="user-displayName">Flávio Augusto</span></p>
+                    </div>
+
+                    <div class="navbar-item logged">
+                        <div class="buttons">
+                            <a class="button is-light bt-signout">
+                                Sair
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="navbar-item not-logged">
+                        <div class="buttons">
+                            <a class="button is-primary bt-signup">
+                                <strong>Criar Conta</strong>
+                            </a>
+                            <a class="button is-light bt-signin">
+                                Log in
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <section class="section">
+        <div class="container">
+            <div>
+                <div class="buttons">
+                    <button class="button is-link is-outlined" onclick="window.history.back()">VOLTAR</button>
+                    <button class="button is-primary edit-evt">EDITAR INFORMAÇÕES</button>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-8">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-5by3" id="figure-banner" style="background: #ddd;">
+                                <!-- <img class="event-banner" src="https://i.pinimg.com/originals/b7/0d/6e/b70d6e13af7bb4c4004ec0f73e4f6ac9.jpg" alt="Placeholder image"> -->
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="https://bulma.io/images/placeholders/96x96.png"
+                                            alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4 titulo-evento">...</p>
+                                    <p class="subtitle is-6">por <span class="nome-organizador">...</span></p>
+                                </div>
+                            </div>
+
+                            <div class="content">
+                                <div class="descricao"></div>
+                                <br>
+                                <br>
+                                <time class="data-evento" datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="column is-4">
+                    <div class="card" style="position: sticky; top: 20px;">
+                        <div class="card-content">
+                            <div>
+                                <h2 class="is-size-4">Participantes</h3>
+                                    <hr style="margin-top: 0px;" />
+                                    <div style="display: flex; align-items: center;">
+                                        <!-- <span style="flex-grow: 2; width: 80%; font-weight: bold;">LOTE PADRÃO</span> -->
+                                        <span style="flex-grow: 1;"><span class="total-attendee">0</span>
+                                            PARTICIPANTE(S) CONFIRMARAM PRESENÇA</span>
+                                    </div>
+
+                                    <br />
+                                    <br />
+
+                                    <button class="button is-success attendee-list"
+                                        style="width: 100%; box-shadow: 2px 2px 2px #333, 4px 4px 4px rgba(0,0,0,.5)">VER
+                                        LISTA</button>
+                            </div>
+                            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit ratione asperiores veritatis iure corporis libero qui quaerat dignissimos at, ex accusantium, id vero nihil architecto ab facere magni quas fugiat!</p> -->
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- MODAL edição -->
+    <div class="modal" id="modal-update-event">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">EDITAR EVENTO</p>
+                <button class="delete close-modal" data-target="#modal-update-event" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <form class="update-event">
+                    <div class="field">
+                        <label for="title">Título</label>
+                        <input type="text" class="input" name="title" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="description">Descrição</label>
+                        <textarea name="description" id="" cols="30" class="textarea" rows="8" required></textarea>
+                    </div>
+
+                    <div class="field">
+                        <label for="date">Data do Evento</label>
+                        <input type="date" class="input" name="date" required>
+                    </div>
+
+                    <!-- <div class="field">
+                        <label for="banner">Banner</label>
+                        <input type="file" name="banner" class="input">
+                    </div> -->
+                    <button class="button is-success" name="update-event" type="submit">ATUALIZAR</button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <!-- MODAL listagem dos participantes -->
+    <div class="modal" id="modal-attendee">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">LISTA DE PARTICIPANTES</p>
+                <button class="delete close-modal" data-target="#modal-attendee" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <ul>
+                    ...
+                </ul>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success close-modal" data-target="#modal-participantes">OK</button>
+            </footer>
+        </div>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-storage.js"></script>
+    <script>
+        const IS_DASHBOARD = true;
+    </script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/modal-aux.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/event.js"></script>
+
+
+</body>
+</body>
+
+</html>

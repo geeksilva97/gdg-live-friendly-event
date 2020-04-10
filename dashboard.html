@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friendly Event - Dashboard</title>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.1/css/bulma.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+    <header>
+        <nav class="navbar is-spaced has-shadow" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <h1 class="is-size-3 has-text-bold">Friendly Event <small>(Dashboard)</small></h1>
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <div class="navbar-item logged">
+                        <a href="index.html">Página de eventos</a>
+                    </div>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item logged">
+                        <p>Olá <span class="user-displayName">Flávio Augusto</span></p>
+                    </div>
+
+                    <div class="navbar-item logged">
+                        <div class="buttons">
+                            <a class="button is-light bt-signout">
+                                Sair
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="navbar-item not-logged">
+                        <div class="buttons">
+                            <a class="button is-primary bt-signup">
+                                <strong>Criar Conta</strong>
+                            </a>
+                            <a class="button is-light bt-signin">
+                                Log in
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="section">
+        <button class="button is-success bt-new-event">CRIAR UM NOVO EVENTO</button>
+    </div>
+
+    <section class="section">
+        <h1 class="is-size-4">MEUS EVENTOS</h1>
+        <hr />
+        <br />
+        <br />
+        <div class="columns is-multiline my-events" style="justify-content: center;">            
+            <h1>CARREGANDO EVENTOS...</h1>
+        </div>
+
+
+    </section>
+    
+
+    <!-- MODAL CRIAÇÃO DE EVENTO -->
+<div class="modal" id="modal-new-event">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">CRIAR UM EVENTO</p>
+        <button class="delete close-modal" data-target="#modal-new-event" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <form class="new-event">
+          <div class="field">
+            <label for="title">Título</label>
+            <input type="text" class="input" name="title" required>
+          </div>
+
+          <div class="field">
+            <label for="description">Descrição</label>
+            <textarea name="description" id="" cols="30" class="textarea" rows="8" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="data-evento">Data do Evento</label>
+            <input type="date" class="input" name="date" required>
+          </div>
+        
+          <div class="field">
+              <label for="banner">Banner</label>
+              <input type="file" name="banner" class="input" required>
+          </div>
+          <button class="button is-success" name="save" type="submit">REGISTRAR</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <!-- Firebase Core -->
+  <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-firestore.js"></script>    
+  <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-storage.js"></script>    
+  <script>
+      const IS_DASHBOARD = true;
+  </script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/modal-aux.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

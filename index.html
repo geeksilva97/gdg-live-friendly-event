@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friendly Event</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.1/css/bulma.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar is-spaced has-shadow" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <h1 class="is-size-3 has-text-bold">Friendly Event</h1>
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <div class="navbar-item logged">
+                        <a href="dashboard.html">Dashboard</a>
+                    </div>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item logged">
+                        <p>Olá <span class="user-displayName">Flávio Augusto</span></p>
+                    </div>
+
+                    <div class="navbar-item logged">
+                        <div class="buttons">
+                            <a class="button is-light bt-signout">
+                                Sair
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="navbar-item not-logged">
+                        <div class="buttons">
+                            <a class="button is-primary bt-signup">
+                                <strong>Criar Conta</strong>
+                            </a>
+                            <a class="button is-light bt-signin">
+                                Log in
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <section class="section">
+        <h2>Olá, que bom ter você aqui no Friendly Event. Aqui você encontra todo tipo de evento possível. Talvez algum
+            deles seja do seu interesse.</h2>
+    </section>
+
+
+    <div class="columns is-multiline my-events" style="justify-content: center;">
+    </div>
+
+
+    <!-- MODAL DE REGISTRO -->
+    <div class="modal" id="modal-signup">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Criar Conta</p>
+                <button class="delete close-modal" data-target="#modal-signup" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <form class="signup">
+                    <div class="field">
+                        <label for="name">Nome</label>
+                        <input type="text" class="input" name="name" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="input" name="email" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="senha">Senha</label>
+                        <input type="password" class="input" name="password" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="confirmacao-senha">Confirme a senha</label>
+                        <input type="password" class="input" name="confirm-password" required>
+                    </div>
+
+                    <button class="button is-success" type="submit" name="criar-conta">Criar Conta</button>
+                </form>
+            </section>
+            <!-- <footer class="modal-card-foot">
+        
+      </footer> -->
+        </div>
+    </div>
+
+
+    <!-- MODAL DE LOGIN -->
+    <div class="modal modal-signin" id="modal-signin">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Acessar</p>
+                <button class="delete close-modal" data-target="#modal-signin" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <form class="signin">
+
+                    <div class="field">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="input" name="email">
+                    </div>
+
+                    <div class="field">
+                        <label for="senha">Senha</label>
+                        <input type="password" class="input" name="password">
+                    </div>
+
+                    <a href="#">Esqueceu sua senha?</a>
+                    <br />
+                    <br />
+                    <div class="field">
+                        <button class="button is-success" name="entrar" type="submit">ENTRAR</button>
+                    </div>
+
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <!-- Firebase Core -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-firestore.js"></script>    
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/modal-aux.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/signup.js"></script>
+    <script src="js/signin.js"></script>
+
+    
+</body>
+
+</html>

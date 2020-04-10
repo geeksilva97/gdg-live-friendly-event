@@ -1,0 +1,21 @@
+users {
+    name, email, occupation, graduation
+}
+events {
+    bannerUrl,
+    date,
+    description,
+    organizer: {
+        email,
+        name
+    },
+    organizerId,
+    subscribers,
+    title
+    subscribers {
+        user {
+            name,
+            email
+        }
+    }
+}
