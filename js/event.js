@@ -45,7 +45,7 @@ formUpdateEvt.addEventListener('submit', (e) => {
         .update({
             title: formData.get('title'),
             description: formData.get('description'),
-            date: new Date(formData.get('date'))
+            date: new Date(`${formData.get('date')} 00:00:00`)
         })
         .then(() => {
             loadEvent(eventId);

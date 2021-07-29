@@ -1,6 +1,5 @@
 const eventId = window.location.hash.replace('#', '');
 const eventsCollection = firebase.firestore().collection('events');
-
 const titleEvtElement = document.querySelector('.titulo-evento');
 const organizerNameElement = document.querySelector('.nome-organizador');
 const descriptionEvtElement = document.querySelector('.descricao');
@@ -13,13 +12,18 @@ const btWillAttendee = document.querySelector('.bt-todentro');
 const btWillNotAttendee = document.querySelector('.bt-tofora');
 const subscribedBlock = document.querySelector('p.inscrito');
 
+// btSignOut.addEventListener('click', () => {
+//     firebase.auth().signOut();
+// });
+
+
 let subscribed = false;
 
 let event;
 
 loadEvent = (eventId) => {
     eventsCollection.doc(eventId)
-        .get().then(doc => {
+        .get().then(async doc => {
             if (!doc.exists) {
                 window.location = 'index.html';
                 return;
@@ -53,7 +57,6 @@ const checkSubscription = async () => {
 const unsubscribe = async () => {
     const eventDoc = firebase.firestore().collection('events').doc(eventId);
     const subscriptionsCollection = eventDoc.collection('subscriptions');
-    // const user = this.app.user;
 
     try {
         await subscriptionsCollection.doc(currentUser.uid).delete();
@@ -121,7 +124,9 @@ firebase.auth().onAuthStateChanged(async (user) => {
             .collection('subscriptions').doc(user.uid).get();
             subscribed = doc.exists;
             checkSubscription();
-        }catch(e) {}
+        }catch(e) {
+            console.error(e);
+        }
 
     }
 });

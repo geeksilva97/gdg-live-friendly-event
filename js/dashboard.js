@@ -20,6 +20,12 @@ btNewEvent.addEventListener('click', () => {
 });
 
 
+async function uploadFileToStorage(user, banner) {
+    const storageRef = this.firebase.storage().ref(user.uid);
+    let storageSnapshot = await storageRef.child(banner.name).put(banner);
+    return await storageSnapshot.ref.getDownloadURL();
+}
+
 /**
  * 
  */
@@ -30,28 +36,16 @@ formNewEvent.addEventListener('submit', async (e) => {
         const inputBanner = document.querySelector('input[name=banner]');
         const formData = new FormData();
         const banner = inputBanner.files[0];
-        const storageRef = this.firebase.storage().ref(user.uid);
         // Upload da imagem do banner  
-        let storageSnapshot = null;
-        let downloadURL = '';
-        try {
-            storageSnapshot = await storageRef.child(banner.name).put(banner);
-            downloadURL = await storageSnapshot.ref.getDownloadURL();
-        } catch (e) {
-            alert('Erro ao enviar imagem');
-        }
-
-        if (downloadURL.length === 0) return;
+        let downloadURL = await uploadFileToStorage(user, banner);
 
         formFields.forEach(field => formData.append(field.name, field.value));
-
-        let key = formData.get('title').replace(/\s/g, '').toLowerCase();
-
+        let key = `${formData.get('title').replace(/\s/g, '').toLowerCase()}${Date.now()}`;
         eventsCollection.doc(key).set({
             subscribers: 0,
             title: formData.get('title'),
             description: formData.get('description'),
-            date: new Date(formData.get('date')),
+            date: new Date(`${formData.get('date')} 00:00:00`),
             bannerUrl: downloadURL,
             organizerId: user.uid,
             organizer: {
@@ -62,6 +56,7 @@ formNewEvent.addEventListener('submit', async (e) => {
         .then(data => {
             alert('Evento registrado com sucesso');
             modalNewEvent.classList.remove('is-active');
+            formNewEvent.reset();
         })
         .catch(err => {
             alert('Houve um erro inesperado');
@@ -73,9 +68,6 @@ formNewEvent.addEventListener('submit', async (e) => {
         alert('Você precisa estar logado(a) para criar um evento');
     }
 
-
-
-
 });
 
 firebase.auth().onAuthStateChanged((user) => {
@@ -86,7 +78,7 @@ firebase.auth().onAuthStateChanged((user) => {
                 // limpando tela
                 myEvents.innerHTML = '';
                 querySnapshot.forEach(doc => {
-                    events[doc.id] = doc.data();
+                    events[doc.id] = {id: doc.id, ...doc.data()};
                     myEvents.appendChild(buildColumnCard(events[doc.id], true));
                 });
 

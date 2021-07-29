@@ -1,5 +1,6 @@
 # Logs
 logs
+.DS_Store
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -64,3 +65,5 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+js/firebase-config.js

@@ -3,7 +3,6 @@ const formFieldsSignIn = document.querySelectorAll('form.signin input');
 
 formSignIn.addEventListener('submit', (e) => {
     e.preventDefault();
-    // alert('criando sua conta');
     console.log(formFieldsSignIn);
     const formData = new FormData();
     formFieldsSignIn.forEach(field => {
@@ -19,7 +18,4 @@ formSignIn.addEventListener('submit', (e) => {
             alert('Falha ao efetuar o login');
             console.error(err);
         });
-
-
-    // console.log(formFields.get);
 });

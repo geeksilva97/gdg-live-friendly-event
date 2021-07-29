@@ -60,14 +60,14 @@ buildColumnCard = (evento, isDashboard = false) => {
 
     if (isDashboard) {
         const a = document.createElement('a');
-        a.href = `event.html#${evento.title.replace(/\s/g, '').toLowerCase()}`;
-        a.innerText = 'Detalhes';;
+        a.href = `event.html#${evento.id}`;
+        a.innerText = 'Detalhes';
 
         cardContent.appendChild(a);
     } else {
         const a = document.createElement('a');
-        a.href = `subscribe.html#${evento.title.replace(/\s/g, '').toLowerCase()}`;
-        a.innerText = 'Detalhes';
+        a.href = `subscribe.html#${evento.id}`;
+        a.innerText = 'Ver mais';
 
         cardContent.appendChild(a);
     }

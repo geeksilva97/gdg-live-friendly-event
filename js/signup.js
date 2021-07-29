@@ -3,8 +3,6 @@ const formFields = document.querySelectorAll('form.signup input');
 
 formSignup.addEventListener('submit', (e) => {
     e.preventDefault();
-    // alert('criando sua conta');
-    console.log(formFields);
     const formData = new FormData();
     formFields.forEach(field => {
         console.log(field.name, field.value);
@@ -20,7 +18,7 @@ formSignup.addEventListener('submit', (e) => {
     // creating user
     this.firebase.auth().createUserWithEmailAndPassword(formData.get('email'), formData.get('password'))
         .then(data => {
-            const user = data.user;//this.firebase.auth().currentUser;
+            const user = data.user;
             if (user) {
                 // update profile
                 user.updateProfile({ displayName: formData.get('name') });
@@ -41,13 +39,12 @@ formSignup.addEventListener('submit', (e) => {
                 modalSignUp.classList.toggle('is-active');
 
                 // enviando o e-mail de confirmação
-                // user.sendEmailVerification()
-                //     .then(() => {
-                //         alert('Sua conta foi criada com sucesso. Um link de confirmação foi enviado para o endereco ' + formData.get('email'));
-                //         this.modal.classList.remove('is-active');
-                //         this.camposFormCriarConta.forEach(campo => campo.value = '');
-                //     })
-                //     .catch(err => console.error(err));
+                user.sendEmailVerification()
+                    .then(() => {
+                        alert('Sua conta foi criada com sucesso. Um link de confirmação foi enviado para o endereco ' + formData.get('email'));
+                        this.camposFormCriarConta.forEach(campo => campo.value = '');
+                    })
+                    .catch(err => console.error(err));
             }
         })
         .catch(error => {

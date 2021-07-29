@@ -32,10 +32,7 @@ eventsCollection.where('date', '>=', (new Date()))
         // limpando tela
         myEvents.innerHTML = '';
         querySnapshot.forEach(doc => {
-            events[doc.id] = doc.data();
+            events[doc.id] = {id: doc.id, ...doc.data()};
             myEvents.appendChild(buildColumnCard(events[doc.id]));
         });
-
-        console.log(events);
-
     });
