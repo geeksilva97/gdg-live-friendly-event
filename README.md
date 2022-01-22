@@ -34,7 +34,7 @@ Para usar as funcionalidades do Functions e do Hosting siga as intruções da pr
 
 3. Use o comando `firebase login` para se autenticar.
 
-4. Inicie o projeto Firebase com `firebase init`
+4. ~~Inicie o projeto Firebase com `firebase init`~~ Selecione o projeto com `firebase use [ID DO SEU PROJETO]`
 
 5. Selecione as features **Functions** e **Hosting**
 
