@@ -50,19 +50,12 @@ exports.updateAtSub = functions.firestore.document('events/{eventId}/subscriptio
                 </p>
             `
         };
-
-
-        
+  
         const increment = admin.firestore.FieldValue.increment(1);
         return _updateSubscribers(eventId, increment).then(snapshot => {
             return transporter.sendMail(mailOptions, (err, info) => {
-                if(err){
-                    // return res.send(err.toString());
-                    return err.toString();
-                }
+                if(err) return err.toString();
                 return `Mensagem enviada com sucesso. Id: ${info.messageId} | Response: ${info.response}`;
-                // return res.send(`Mensagem enviada com sucesso. Id: ${info.messageId} | Response: ${info.response}`);
-                // console.log('Mensagem %s enviada: %s', info.messageId, info.response);
             });
         });
     });
@@ -73,10 +66,3 @@ exports.updateAtUnsub = functions.firestore.document('events/{eventId}/subscript
         const increment = admin.firestore.FieldValue.increment(-1);
         return _updateSubscribers(eventId, increment);
     });
-
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });

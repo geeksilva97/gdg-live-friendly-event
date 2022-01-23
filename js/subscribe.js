@@ -6,19 +6,11 @@ const descriptionEvtElement = document.querySelector('.descricao');
 const dateEvtElement = document.querySelector('.data-evento');
 const bannerEvtElement = document.querySelector('.event-banner');
 const spanTotalAttendee = document.querySelector('.total-attendee');
-
-
 const btWillAttendee = document.querySelector('.bt-todentro');
 const btWillNotAttendee = document.querySelector('.bt-tofora');
 const subscribedBlock = document.querySelector('p.inscrito');
 
-// btSignOut.addEventListener('click', () => {
-//     firebase.auth().signOut();
-// });
-
-
 let subscribed = false;
-
 let event;
 
 loadEvent = (eventId) => {
